@@ -9,7 +9,18 @@
 {#    <input id="name" type="text" name="name" required />#}
     <form action="/listing/item_edit/" method="post">
         {% csrf_token %}
-        {{ form }}
+        <div class="field">
+            <label for="id_name">Name:</label>
+            {{ form.name }}
+        </div>
+         <div class="field">
+            <label for="id_description">Description:</label>
+            {{ form.description }}
+        </div>
+         <div class="field">
+            <label for="id_category">Category:</label>
+            {{ form.category }}
+        </div>
         <input type="submit" value="Submit" />
     </form>
 </body>

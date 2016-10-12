@@ -23,6 +23,13 @@ def item_edit(request):
     if request.method == 'POST':
         form = ItemForm(request.POST)
         if form.is_valid():
+            i_name = form.cleaned_data['name']
+            i_description = form.cleaned_data['description']
+            i_category = form.cleaned_data['category']
+
+            new_item = Item(name=i_name, description=i_description, category=i_category)
+            new_item.save()
+
             return HttpResponseRedirect("listing/all_items")
 
     else:
