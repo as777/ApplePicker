@@ -16,9 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from list.views import
+from listing import views
 
 urlpatterns = [
-    url(r'^list/', list),
+    url(r'^listing/item_edit/', views.item_edit),
+    url(r'^listing/item/([0-9]+)', views.detail),
+    url(r'^listing/all_items/', views.listing),
     url(r'^admin/', admin.site.urls),
 ]

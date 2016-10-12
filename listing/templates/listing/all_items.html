@@ -6,16 +6,17 @@
 </head>
 <body>
 
-{% for item in items %}
+{% for item in items_list %}
     <div>
-        <h1>{{ items.subject }}</h1>
-        <br/>
+        <h1>{{ item.name }}</h1>
         <p>
-            {{ items.name }}
+            {{ item.description }}
+            <br/>
+            {{ item.date_entry }}
         </p>
 
     </div>
-{% end for %}
+{% endfor %}
 
 </body>
 </html>

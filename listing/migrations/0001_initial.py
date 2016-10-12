@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField()),
                 ('is_done', models.BooleanField()),
                 ('date_entry', models.DateTimeField(auto_now_add=True)),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='list.Category')),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='listing.Category')),
             ],
         ),
     ]

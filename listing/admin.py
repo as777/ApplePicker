@@ -1,5 +1,5 @@
 from django.contrib import admin
-from list.models import Item, Category
+from listing.models import Item, Category
 
 # Register your models here.
 class ItemAdmin(admin.ModelAdmin):
