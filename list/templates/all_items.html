@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Itmes</title>
+</head>
+<body>
+
+{% for item in items %}
+    <div>
+        <h1>{{ items.subject }}</h1>
+        <br/>
+        <p>
+            {{ items.name }}
+        </p>
+
+    </div>
+{% end for %}
+
+</body>
+</html>
