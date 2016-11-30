@@ -7,15 +7,18 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .models import Item
 from .forms import ItemForm
 
+def index(request):
+    return render(request, "listing/index.html")
+
 def listing(request):
-    items = Item.objects.all()
+    items = Item.objects.order_by('name')
     return render(request, "listing/all_items.html", {'items_list': items})
 
 def detail(request, item_id):
     try:
         i = Item.objects.get(pk=item_id)
     except Item.DoesNotExist:
-        raise Http404("Item does not exist")
+        raise Http404("Apple does not exist")
 
     return render(request, "listing/detail.html", {'item': i})
 
