@@ -1,28 +1,3 @@
-{#{% extends 'listing/base.html' %}#}
-{#{% block main_content %}#}
-{#    <label for="name">Item name: </label>#}
-{#    <input id="name" type="text" name="name" required />#}
-{#    <a class="btn btn-default" href="{% url 'item_edit' pk=item.id %}"></a>#}
-{#    <h2>{{ item.name }}</h2>#}
-{#    <p>{{ item.description|linebreaksbr }}</p>#}
-{#    <form action="{% url 'item_edit' item.id %}" method="post">#}
-{#        {% csrf_token %}#}
-{#        <div class="field">#}
-{#            <label for="id_name">Name:</label>#}
-{#            {{ form.name }}#}
-{#        </div>#}
-{#         <div class="field">#}
-{#            <label for="id_description">Description:</label>#}
-{#            {{ form.description }}#}
-{#        </div>#}
-{#         <div class="field">#}
-{#            <label for="id_category">Category:</label>#}
-{#            {{ form.category }}#}
-{#        </div>#}
-{#        <input type="submit" value="Submit" />#}
-{#    </form>#}
-{#{% endblock %}#}
-
 {% extends 'listing/base.html' %}
 {% block main_content %}
     <h2>edit</h2>

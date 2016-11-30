@@ -1,6 +1,10 @@
 <h1>apples under the tree</br>organic is the best</h1>
-<a href="/">index</a>
-</br>
-<a href="/listing/all_items.html">all apples</a>
-</br>
-<a href="/listing/item_new.html">apple picking</a>
+{#    <a class="btn btn-default" href="{% url 'index' %}">index</a>#}
+{#    <a class="btn btn-default" href="{% url 'item_list' %}">all</a>#}
+{#    <a class="btn btn-default" href="{% url 'item_new' %}">new</a>#}
+
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="{% url 'index' %}">index</a></li>
+  <li role="presentation"><a href="{% url 'item_list' %}">all</a></li>
+  <li role="presentation"><a href="{% url 'item_new' %}">new</a></li>
+</ul>

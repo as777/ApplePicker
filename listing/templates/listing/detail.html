@@ -1,6 +1,8 @@
 {% extends 'listing/base.html' %}
 {% block main_content %}
     <h2>{{ item.name }}</h2>
+    <p>{{ item.date_entry }}</p>
+    <p>{{ item.category }}</p>
     <p>{{ item.description|linebreaksbr }}</p>
     <p>{% if item.is_done %}finished:){% endif %} </p>
     <a class="btn btn-default" href="{% url 'item_edit' pk=item.pk %}">edit</a>

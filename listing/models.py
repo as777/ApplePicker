@@ -6,19 +6,18 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Item(models.Model):
-
     name = models.CharField(max_length=255)
 
-    description = models.TextField() # help_text="which episode you are up to"
+    description = models.TextField()  # help_text="which episode you are up to"
 
     is_done = models.BooleanField(default=False)
 
     date_entry = models.DateTimeField(auto_now_add=True)
 
-    TVSHOW = 'S'
-    MOVIE = 'M'
-    DOCUMENTARY = 'D'
-    ALBUM = 'A'
+    TVSHOW = 'tv show'
+    MOVIE = 'movie'
+    DOCUMENTARY = 'documentary'
+    ALBUM = 'album'
     CATEGORY_CHOICES = (
         (TVSHOW, 'TV Show'),
         (MOVIE, 'Movie'),
@@ -27,9 +26,9 @@ class Item(models.Model):
         (None, 'No Category')
     )
     category = models.CharField(
-        max_length=1,
+        max_length=20,
         choices=CATEGORY_CHOICES,
-        default= None,
+        default=None,
     )
 
     def __str__(self):
@@ -44,3 +43,11 @@ class Item(models.Model):
 #
 #     def __str__(self):
 #         return self.title
+
+class Quote(models.Model):
+    text = models.TextField()
+    origin = models.CharField(max_length=50)
+    date_entry = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.pk

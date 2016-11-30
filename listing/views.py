@@ -18,7 +18,7 @@ class ListingView(generic.ListView):
     context_object_name = 'item_list'
 
     def get_queryset(self):
-        return Item.objects.order_by('name')
+        return Item.objects.order_by('category').order_by('name')
 
 class DetailView(generic.DetailView):
     model = Item
@@ -56,3 +56,4 @@ class DeleteView(generic.edit.DeleteView):
     success_url = reverse_lazy('item_list')
 
     template_name = 'listing/item_delete.html'
+
