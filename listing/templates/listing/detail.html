@@ -1,8 +1,9 @@
 {% extends 'listing/base.html' %}
 {% block main_content %}
-        <h2>{{ item.name }}</h2>
-        <div>
-            <p>{{ item.description }}</p>
-        </div>
+    <h2>{{ item.name }}</h2>
+    <p>{{ item.description|linebreaksbr }}</p>
+    <p>{% if item.is_done %}finished:){% endif %} </p>
+    <a class="btn btn-default" href="{% url 'item_edit' pk=item.pk %}">edit</a>
+    <a class="btn btn-default" href="{% url 'item_delete' pk=item.pk %}">delete</a>
 {% endblock %}
 

@@ -1,41 +1,58 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views import generic
+from django.utils import timezone
+from django.core.urlresolvers import reverse_lazy
 
 # Django docs: topics/http/views/
 
 # Create your views here.
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from .models import Item
-from .forms import ItemForm
+from .models import *
+from .forms import *
 
 def index(request):
     return render(request, "listing/index.html")
 
-def listing(request):
-    items = Item.objects.order_by('name')
-    return render(request, "listing/all_items.html", {'items_list': items})
+class ListingView(generic.ListView):
+    template_name = 'listing/all_items.html'
+    context_object_name = 'item_list'
 
-def detail(request, item_id):
-    try:
-        i = Item.objects.get(pk=item_id)
-    except Item.DoesNotExist:
-        raise Http404("Apple does not exist")
+    def get_queryset(self):
+        return Item.objects.order_by('name')
 
-    return render(request, "listing/detail.html", {'item': i})
+class DetailView(generic.DetailView):
+    model = Item
+    template_name = 'listing/detail.html'
 
-def item_edit(request):
+def item_edit(request, pk):
+    i = get_object_or_404(Item, pk=pk)
+
     if request.method == 'POST':
+        form = ItemForm(request.POST, instance=i)
+        if form.is_valid():
+            i = form.save(commit=False)
+            i.save()
+            return redirect('item_detail', pk=i.id)
+    else:
+        form = ItemForm(instance=i)
+
+    return render(request, "listing/item_edit.html", {"form": form})
+
+def item_new(request):
+    if request.method == "POST":
         form = ItemForm(request.POST)
         if form.is_valid():
-            i_name = form.cleaned_data['name']
-            i_description = form.cleaned_data['description']
-            i_category = form.cleaned_data['category']
-
-            new_item = Item(name=i_name, description=i_description, category=i_category)
+            new_item = form.save(commit=False)
+            new_item.date_entry = timezone.now()
             new_item.save()
-
-            return HttpResponseRedirect("listing/all_items")
-
+            return redirect('item_detail', pk=new_item.id)
     else:
         form = ItemForm()
 
-    return render(request, "listing/item_edit.html", {"form": form})
+    return render(request, 'listing/item_new.html', {'form': form})
+
+class DeleteView(generic.edit.DeleteView):
+    model = Item
+    success_url = reverse_lazy('item_list')
+
+    template_name = 'listing/item_delete.html'

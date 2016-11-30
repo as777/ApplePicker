@@ -1,0 +1,9 @@
+{% extends 'listing/base.html' %}
+{% block main_content %}
+    <h2>new apple</h2>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">save</button>
+{#        <button type="reset" class="reset btn btn-default">reset</button>#}
+    </form>
+{% endblock %}

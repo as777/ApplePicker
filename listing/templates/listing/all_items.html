@@ -1,12 +1,11 @@
 {% extends 'listing/base.html' %}
 {% block main_content %}
-    {% if items_list %}
-        <h2>all the apples</h2>
-        {% for item in items_list %}
+    {% if item_list %}
+        <h2>all apples</h2>
+        {% for item in item_list %}
             <div>
-{#            <a href="{% url 'detail' item.id %}">{{ item.name }}</a>#}
-                <a href="/listing/item/{{ item.id }}/">{{ item.name }}</a>
-                <p>{{ item.description }}</p>
+                <a href="{% url 'item_detail' item.id %}">{{ item.name }}</a>
+                <p>{{ item.description|linebreaksbr }}</p>
 
             </div>
         {% endfor %}

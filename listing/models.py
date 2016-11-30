@@ -9,7 +9,7 @@ class Item(models.Model):
 
     name = models.CharField(max_length=255)
 
-    description = models.TextField(help_text="why me")
+    description = models.TextField() # help_text="which episode you are up to"
 
     is_done = models.BooleanField(default=False)
 
@@ -18,10 +18,12 @@ class Item(models.Model):
     TVSHOW = 'S'
     MOVIE = 'M'
     DOCUMENTARY = 'D'
+    ALBUM = 'A'
     CATEGORY_CHOICES = (
         (TVSHOW, 'TV Show'),
         (MOVIE, 'Movie'),
         (DOCUMENTARY, 'Documentary'),
+        (ALBUM, 'Album'),
         (None, 'No Category')
     )
     category = models.CharField(
